@@ -1,7 +1,6 @@
-from display import HangmanDisplay
-from words import WordManager
-from config import Config
-
+from .display import HangmanDisplay
+from .words import WordManager
+from .config import Config
 
 class Game:
 
@@ -55,8 +54,7 @@ class Game:
             self.attempts_left -= 1
             print("You have", self.attempts_left, "attempts left")
             self.display_field(self.fields)
-            total = len(Config.HANGMAN_STATES)
-            index = total - self.attempts_left
+            index = len(Config.HANGMAN_STATES) - self.attempts_left
             self.hangman_states.display_hangman(index)
 
     def is_game_over(self):
@@ -71,13 +69,3 @@ class Game:
     def start(self):
         while not self.is_game_over():
             self.enter_letter()
-
-
-# words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"]
-words = ["banana"]
-random_word = WordManager(words)
-display = HangmanDisplay(Config.HANGMAN_STATES)
-init_game = Game(random_word, display)
-
-
-init_game.start()
