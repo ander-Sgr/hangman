@@ -6,10 +6,13 @@ class HangmanDisplay:
         return len(self.hangman_states)
 
     def display_hangman(self, attempts_left: int) -> None:
-        print(self.hangman_states[attempts_left])
+        if attempts_left >= 0 and attempts_left < len(self.hangman_states):
+            print(self.hangman_states[attempts_left])
 
-    def display_presentation(self, word: str, attempts: int) -> None:
+    def display_presentation(self, word: str) -> None:
         total_letters = len(word)
+        total_attempts = self.get_total_attempts()
         print("Welcome to the Hangman game!")
-        print("The word has", total_letters, "letters in total", "_ " * total_letters)
-        print("You have", attempts, "attempts. ¡Good Luck!")
+        print(f"The word has {total_letters} letters in total: {'_ ' * total_letters}")
+        print(f"You have {total_attempts} attempts. ¡Good Luck!")
+        print("==============================================")
